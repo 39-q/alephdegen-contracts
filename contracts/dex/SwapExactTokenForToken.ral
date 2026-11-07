@@ -1,0 +1,21 @@
+TxScript SwapExactTokenForToken(
+    router: Router,
+    tokenPair: TokenPair,
+    tokenInId: ByteVec,
+    amountIn: U256,
+    amountOutMin: U256,
+    to: Address,
+    deadline: U256
+) {
+    router.swapExactTokenForToken{
+        callerAddress!() -> tokenInId: amountIn
+    }(
+        tokenPair,
+        callerAddress!(),
+        tokenInId,
+        amountIn,
+        amountOutMin,
+        to,
+        deadline
+    )
+}

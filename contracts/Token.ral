@@ -1,0 +1,41 @@
+import "std/fungible_token_interface"
+
+Contract Token(
+  symbol: ByteVec,
+  name: ByteVec,
+  decimals: U256,
+  totalSupply: U256,
+  creator: Address
+) implements IFungibleToken {
+
+  // Allows the contract to send its own tokens to a recipient.
+  // Needed because the token supply is issued to the contract itself at deploy time.
+  @using(assetsInContract = true, checkExternalCaller = false)
+  pub fn getToken(sender: Address, amount: U256) -> () {
+    transferTokenFromSelf!(sender, selfTokenId!(), amount)
+  }
+
+  // --- IFungibleToken required functions ---
+
+  pub fn getSymbol() -> ByteVec {
+    return symbol
+  }
+
+  pub fn getName() -> ByteVec {
+    return name
+  }
+
+  pub fn getDecimals() -> U256 {
+    return decimals
+  }
+
+  pub fn getTotalSupply() -> U256 {
+    return totalSupply
+  }
+
+  // --- Launchpad-specific metadata ---
+
+  pub fn getCreator() -> Address {
+    return creator
+  }
+}
