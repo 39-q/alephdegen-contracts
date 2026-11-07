@@ -1,5 +1,0 @@
-@using(methodSelector = false)
-Interface FeeCollectorPerTokenPair {
-  @using(preapprovedAssets = true, assetsInContract = true)
-  pub fn collectFee(from: Address, amount: U256) -> ()
-}

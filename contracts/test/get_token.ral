@@ -1,3 +1,0 @@
-TxScript GetToken(token: TestToken, sender: Address, amount: U256) {
-  token.getToken(sender, amount)
-}
